@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arcade Web - 2 Juegos</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="main-header">
+    <h1>Arcade Web</h1>
+    <p>Elige un juego y diviértete. Ambos fueron hechos con HTML, CSS y JavaScript.</p>
+  </header>
+
+  <!-- HOME / MENU -->
+  <main id="home" class="container">
+    <section class="cards">
+      <article class="card">
+        <h2>Totito (Tic-Tac-Toe)</h2>
+        <p>Juego clásico de 3x3. Gana quien logre 3 en línea.</p>
+        <button class="btn" onclick="showSection('tictactoe-section')">Jugar Totito</button>
+      </article>
+
+      <article class="card">
+        <h2>Ahorcado</h2>
+        <p>Adivina la palabra antes de quedarte sin intentos.</p>
+        <button class="btn" onclick="showSection('hangman-section')">Jugar Ahorcado</button>
+      </article>
+    </section>
+  </main>
+
+  <!-- TIC TAC TOE -->
+  <main id="tictactoe-section" class="container hidden">
+    <div class="section-header">
+      <h2>Totito (Tic-Tac-Toe)</h2>
+      <button class="btn btn-ghost" onclick="goHome()">← Volver al menú</button>
+    </div>
+
+    <div class="instructions">
+      <h3>Instrucciones</h3>
+      <ul>
+        <li>Turnos alternados: X y O.</li>
+        <li>Gana quien haga 3 en línea (horizontal, vertical o diagonal).</li>
+        <li>Si no hay espacios y nadie gana, es empate.</li>
+      </ul>
+    </div>
+
+    <section class="game-area">
+      <div class="status-bar">
+        <span id="ttt-turn">Turno: X</span>
+        <span id="ttt-score">X: 0 | O: 0 | Empates: 0</span>
+      </div>
+
+      <div id="ttt-board" class="board"></div>
+
+      <div class="controls">
+        <button class="btn" id="ttt-restart">Reiniciar ronda</button>
+        <button class="btn btn-secondary" id="ttt-reset-score">Resetear marcador</button>
+      </div>
+
+      <p id="ttt-message" class="message"></p>
+    </section>
+  </main>
+
+  <!-- HANGMAN -->
+  <main id="hangman-section" class="container hidden">
+    <div class="section-header">
+      <h2>Ahorcado</h2>
+      <button class="btn btn-ghost" onclick="goHome()">← Volver al menú</button>
+    </div>
+
+    <div class="instructions">
+      <h3>Instrucciones</h3>
+      <ul>
+        <li>Haz clic en letras para adivinar la palabra oculta.</li>
+        <li>Tienes 6 intentos fallidos máximo.</li>
+        <li>Ganas si completas la palabra; pierdes si se agotan los intentos.</li>
+      </ul>
+    </div>
+
+    <section class="game-area hangman-area">
+      <div class="hangman-top">
+        <div class="hangman-box">
+          <p><strong>Categoría:</strong> <span id="hm-category"></span></p>
+          <p><strong>Intentos restantes:</strong> <span id="hm-lives"></span></p>
+        </div>
+
+        <div class="hangman-drawing" aria-label="Estado del ahorcado">
+          <div class="pole"></div>
+          <div id="hm-head" class="part hidden"></div>
+          <div id="hm-body" class="part hidden"></div>
+          <div id="hm-arm-left" class="part hidden arm left"></div>
+          <div id="hm-arm-right" class="part hidden arm right"></div>
+          <div id="hm-leg-left" class="part hidden leg left"></div>
+          <div id="hm-leg-right" class="part hidden leg right"></div>
+        </div>
+      </div>
+
+      <h3 id="hm-word" class="word"></h3>
+
+      <div id="hm-letters" class="letters"></div>
+
+      <div class="controls">
+        <button class="btn" id="hm-newword">Nueva palabra</button>
+      </div>
+
+      <p id="hm-message" class="message"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Proyecto de Juegos Interactivos • HTML + CSS + JS</p>
+  </footer>
+
+  <script>
+    function showSection(id){
+      document.querySelectorAll("main.container").forEach(m => m.classList.add("hidden"));
+      document.getElementById(id).classList.remove("hidden");
+      window.scrollTo(0,0);
+    }
+    function goHome(){
+      showSection("home");
+    }
+  </script>
+
+  <script src="js/tictactoe.js"></script>
+  <script src="js/hangman.js"></script>
+</body>
+</html>
